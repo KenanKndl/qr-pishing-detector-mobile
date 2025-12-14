@@ -1,4 +1,4 @@
-﻿# 🛡️ QR Phishing Detector Mobile
+﻿# QR Phishing Detector Mobile
 
 <div style="text-align: center;">
 
