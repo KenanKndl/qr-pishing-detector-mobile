@@ -1,20 +1,31 @@
+import React, { useEffect } from 'react';
+import { Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { HomeScreen } from './src/screens/HomeScreen';
+import * as NavigationBar from 'expo-navigation-bar';
 
+/**
+ * Root component of the application.
+ * Configures global settings such as StatusBar style and Android Navigation Bar behavior.
+ */
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    /**
+     * Configures the Android Navigation Bar to enable Immersive Mode.
+     * This ensures the navigation buttons do not obscure the camera view.
+     */
+    useEffect(() => {
+        if (Platform.OS === 'android') {
+            NavigationBar.setVisibilityAsync("hidden");
+            NavigationBar.setBehaviorAsync("overlay-swipe");
+            NavigationBar.setBackgroundColorAsync("rgba(0,0,0,0)");
+        }
+    }, []);
+
+    return (
+        <>
+            <StatusBar style="light" />
+            <HomeScreen />
+        </>
+    );
+}
